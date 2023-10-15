@@ -1,0 +1,13 @@
+# You can override these settings either by editing this file or creating a clean-main-menu_custom.toml file in the same location.
+# References:
+#     TOML Spec: https://toml.io/en/v1.0.0
+
+[MainMenu]
+Enable = true    # Enable MainMenu hooks and features (default: true)
+
+[MainMenu.UI]
+Delay = false    # Add a delay before the user can interact with the main menu (default: false)
+Intro = false    # Show the intro movie (default: false)
+BethLogo = false # Show the Bethesda logo (default: false)
+GameLogo = false # Show the Starfield logo (default: false)
+Motd = false     # Show the Message of the Day (default: false)

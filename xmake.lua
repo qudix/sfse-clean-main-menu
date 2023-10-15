@@ -5,8 +5,8 @@ set_xmakever("2.8.2")
 add_repositories("re https://github.com/Starfield-Reverse-Engineering/commonlibsf-xrepo")
 
 -- set project
-set_project("commonlibsf-template")
-set_version("0.0.0")
+set_project("clean-main-menu")
+set_version("0.1.0")
 set_license("GPL-3.0")
 
 -- set defaults
@@ -20,19 +20,18 @@ add_rules("mode.releasedbg", "mode.debug")
 add_rules("plugin.vsxmake.autoupdate")
 
 -- require package dependencies
-add_requires("commonlibsf")
+add_requires("commonlibsf 129f7b74cac1813947bf963c267eb19cdcfd689b", "toml++")
 
 -- setup targets
-target("commonlibsf-template")
+target("clean-main-menu")
     -- bind package dependencies
-    add_packages("commonlibsf")
+    add_packages("commonlibsf", "toml++")
 
     -- add commonlibsf plugin
     add_rules("@commonlibsf/plugin", {
-        name = "commonlibsf-template",
-        author = "Author Name",
-        description = "Plugin Description",
-        email = "user@site.com"
+        name = "clean-main-menu",
+        author = "Qudix",
+        description = "Removes main menu elements"
     })
 
     -- add source files
@@ -40,3 +39,22 @@ target("commonlibsf-template")
     add_headerfiles("src/*.h")
     add_includedirs("src")
     set_pcxxheader("src/pch.h")
+
+    -- copy build to MODS or GAME paths
+    after_build(function(target)
+        local copy = function(env, ext)
+            for _, env in pairs(env:split(";")) do
+                if os.exists(env) then
+                    local plugins = path.join(env, ext, "SFSE/Plugins")
+                    os.mkdir(plugins)
+                    os.trycp(target:targetfile(), plugins)
+                    os.trycp(target:symbolfile(), plugins)
+                end
+            end
+        end
+        if os.getenv("XSE_SF_MODS_PATH") then
+            copy(os.getenv("XSE_SF_MODS_PATH"), target:name())
+        elseif os.getenv("XSE_SF_GAME_PATH") then
+            copy(os.getenv("XSE_SF_GAME_PATH"), "Data")
+        end
+    end)
