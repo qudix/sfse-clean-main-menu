@@ -6,7 +6,7 @@ add_repositories("re https://github.com/Starfield-Reverse-Engineering/commonlibs
 
 -- set project
 set_project("clean-main-menu")
-set_version("0.1.0")
+set_version("0.2.0")
 set_license("GPL-3.0")
 
 -- set defaults

@@ -33,13 +33,13 @@ void OnMenu(RE::IMenu* a_menu)
 	if (!config->Value("MainMenu.UI.BethLogo", false)) {
 		RE::Scaleform::GFx::Value obj;
 		if (a_menu->menuObj.GetMember("BethesdaLogo_mc", &obj))
-			obj.SetMember("y", -500);
+			a_menu->menuObj.Invoke("removeChild", nullptr, &obj, 1);
 	}
 
 	if (!config->Value("MainMenu.UI.GameLogo", false)) {
 		RE::Scaleform::GFx::Value obj;
 		if (a_menu->menuObj.GetMember("GameLogo_mc", &obj))
-			obj.SetMember("y", -500);
+			a_menu->menuObj.Invoke("removeChild", nullptr, &obj, 1);
 	}
 }
 
