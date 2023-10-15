@@ -1,6 +1,6 @@
-# CommonLibSF Plugin Template
+# clean-main-menu
 
-This is a basic plugin template using CommonLibSF.
+Removes main menu elements
 
 ### Requirements
 * [XMake](https://xmake.io) [2.8.2+]
@@ -8,8 +8,8 @@ This is a basic plugin template using CommonLibSF.
 
 ## Getting Started
 ```properties
-git clone https://github.com/Starfield-Reverse-Engineering/commonlibsf-template-xmake
-cd commonlibsf-template-xmake
+git clone https://github.com/Qudix/sfse-clean-main-menu
+cd sfse-clean-main-menu
 ```
 
 ## Building
@@ -37,7 +37,3 @@ xmake project -k compile_commands --lsp=clangd
 ```
 
 > ***Note:*** *This will generate a `compile_commands.json` file in the **project's root directory***
-
-
-## Documentation
-Please refer to the [Wiki](../../wiki/Home) for more advanced topics.
