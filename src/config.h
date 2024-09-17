@@ -11,9 +11,8 @@ public:
 
 	void Load()
 	{
-		auto plugin = SFSE::PluginVersionData::GetSingleton();
-		auto path = std::format("data/sfse/plugins/{}.toml", plugin->GetPluginName());
-		auto pathCustom = std::format("data/sfse/plugins/{}_custom.toml", plugin->GetPluginName());
+		auto path = "data/sfse/plugins/sfse-clean-main-menu.toml"sv;
+		auto pathCustom = "data/sfse/plugins/sfse-clean-main-menu_custom.toml"sv;
 
 		_result = toml::parse_file(path);
 		if (!_result)

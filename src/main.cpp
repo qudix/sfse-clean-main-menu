@@ -47,9 +47,6 @@ SFSEPluginLoad(const SFSE::LoadInterface* a_sfse)
 {
 	SFSE::Init(a_sfse);
 
-	const auto plugin = SFSE::PluginVersionData::GetSingleton();
-	logs::info("{} v{}", plugin->GetPluginName(), plugin->GetPluginVersion());
-
 	if (const auto config = Config::GetSingleton()) {
 		config->Load();
 		if (!config->Value("MainMenu.Enable", true))

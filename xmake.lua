@@ -2,35 +2,40 @@
 set_xmakever("2.8.2")
 
 -- add custom package repository
-add_repositories("re https://github.com/Starfield-Reverse-Engineering/commonlibsf-xrepo")
+includes("lib/commonlibsf")
 
 -- set project
-set_project("clean-main-menu")
+set_project("sfse-clean-main-menu")
 set_version("0.2.0")
 set_license("GPL-3.0")
 
 -- set defaults
 set_languages("c++23")
-set_optimize("faster")
-set_warnings("allextra", "error")
+set_warnings("allextra")
 set_defaultmode("releasedbg")
 
 -- add rules
 add_rules("mode.releasedbg", "mode.debug")
 add_rules("plugin.vsxmake.autoupdate")
 
+-- set policies
+set_policy("package.requires_lock", true)
+
 -- require package dependencies
-add_requires("commonlibsf 129f7b74cac1813947bf963c267eb19cdcfd689b", "toml++")
+add_requires("toml++")
 
 -- setup targets
-target("clean-main-menu")
+target("sfse-clean-main-menu")
+    -- add dependencies to target
+    add_deps("commonlibsf")
+
     -- bind package dependencies
-    add_packages("commonlibsf", "toml++")
+    add_packages("toml++")
 
     -- add commonlibsf plugin
-    add_rules("@commonlibsf/plugin", {
+    add_rules("commonlibsf.plugin", {
         name = "clean-main-menu",
-        author = "Qudix",
+        author = "qudix",
         description = "Removes main menu elements"
     })
 
