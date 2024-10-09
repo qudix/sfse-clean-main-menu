@@ -6,7 +6,7 @@ includes("lib/commonlibsf")
 
 -- set project
 set_project("sfse-clean-main-menu")
-set_version("0.3.1")
+set_version("0.3.2")
 set_license("GPL-3.0")
 
 -- set defaults
